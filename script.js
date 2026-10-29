@@ -1,18 +1,24 @@
+//Constantes
+
 const canvas = document.getElementById('canvas');
 const ctx = canvas.getContext('2d');
 
+ctx.font = "monospace"
+
 const scale = 6;
+
 
 const sizex = window.innerWidth;
 const sizey = window.innerHeight-15;
 
-const resize = () => {
-    HDcanvas()
-    ctx.moveTo(0,0);
-    ctx.lineTo(200,1001);
-    ctx.stroke();
-}
+//Variables----------------------
 
+//que o xogador se atope no centro por defecto
+let playerX=window.innerWidth/2;
+let playerY = (window.innerHeight-15)/2;
+
+
+//Functions
 
 function HDcanvas(){
 
@@ -26,11 +32,23 @@ ctx.scale(scale, scale);
 
 }
 
+const resize = () => {
+    HDcanvas()
+}
+
+function mousepos (e) {
+    let x = e.offsetX;
+    let y = e.offsetY;
+
+    return[x,y];
+}
+
+function drawOnMouse(e){
+    let pos= mousepos(e)
+    ctx.clearRect(0,0,sizex,sizey)
+    ctx.fillText("@",pos[0],pos[1])
+}
+
 resize()
 window.addEventListener('resize',resize)
-
-
-ctx.moveTo(0,0);
-
-ctx.lineTo(200,1001);
-ctx.stroke();
+window.addEventListener("click",(e) =>{drawOnMouse(e)})
