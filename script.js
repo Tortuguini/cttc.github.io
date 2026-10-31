@@ -9,8 +9,10 @@ ctx.font = "monospace"
 
 const scale = 6;
 
-
+//Camera settings
 const fov = 100;
+const cameraCords = (-10,-10,10);
+const camera_angles = (0,0,02);
 
 const secPorFrame = 1/50;
 const msPorFrame= secPorFrame *100;
@@ -27,6 +29,8 @@ class Vertex {
     draw(color){
 
         let cordinates = cordCorrect(this.x,this.y);
+
+        let cordinatesDepth = ()
 
         ctx.fillStyle=color;
         ctx.fillRect(cordinates[0]-1/2,cordinates[1]-1/2,1,1);
@@ -81,12 +85,16 @@ const sizeClear = -15;
 // Posted by Dan Dascalescu, modified by community. See post 'Timeline' for change history
 // Retrieved 2026-10-30, License - CC BY-SA 4.0
 
+function cameraDepthCorrection(P,C,R,fov){
+
+}
+
 function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
 }
 
 function cordCorrect(x,y){
-    return [x+(sizex/2),y+(sizey/2)];
+    return [x+(sizex/2),(sizey/2)-y];
 }
 
 function cordIncorrect(x,y){
@@ -143,20 +151,15 @@ function render(){
 //Inicializacion
 resize()
 window.addEventListener('resize',resize)
-window.addEventListener("click",(e) =>{drawOnMouse(e)})
+//window.addEventListener("click",(e) =>{drawOnMouse(e)})
 
-const a = new Vertex(10,-20,0)
-const b = new Vertex(10,0,0)
-const c = new Vertex(-10,0,0)
+const a = new Vertex(0,0,0)
+const b = new Vertex(100,0,0)
+const c = new Vertex(50,50,50)
 
 const triangulo = new Triangle(a,b,c,"red");
 
-const d = new Vertex(-10,-20,0)
-
-const trig2 = new Triangle(c,a,d,"blue");
-
-
 triangulo.draw();
-trig2.draw();
+
 
 
