@@ -30,7 +30,7 @@ class Vertex {
 
         let cordinates = cordCorrect(this.x,this.y);
 
-        let cordinatesDepth = ()
+        let cordinatesDepth;
 
         ctx.fillStyle=color;
         ctx.fillRect(cordinates[0]-1/2,cordinates[1]-1/2,1,1);
